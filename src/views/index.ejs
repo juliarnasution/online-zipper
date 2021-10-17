@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Online Zipper</title>
+        
+        <!-- CSS (load bootstrap from a CDN) -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <style>
+            body { padding-top:50px; }
+        </style>
+    </head>
+    <body class="container">
+        <header>
+        </header>
+
+        <main>
+            <% if(message.success){ %>
+                <div class="alert alert-dismissible alert-success">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Well done!</strong> <%= message.success %>.
+                </div>  
+            <% } %>
+            <% if(message.error){ %>
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Failed!</strong> <%= message.error %>.
+                </div>  
+            <% } %>
+            <div class="d-flex justify-content-center p-4" style="background-color: beige;">
+                <div>
+                    <h1>Online Zipper</h1>
+                    <div>
+                        <form action="/zipper/compress" accept="multipart/form-data" method="POST">
+                            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                            <div class="form-group">
+                                <label class="col-form-label mt-4" for="inputDefault">Pilih File</label>
+                                <input type="file" name="file" class="form-control" placeholder="Pilih file zip" >
+                            </div>
+                            <div class="form-group mt-2">
+                                <button type="submit" class="btn btn-primary">Compress</button>
+                            </div>
+                        </form>
+                        <% if(zip_url){ %>
+                            <a target="_blank" href="/download/<%= zip_url %>">Download File Anda</a>
+                        <% } %>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+        </main>
+
+        <footer>
+        </footer>
+
+    </body>
+</html>
