@@ -28,3 +28,7 @@ const generateFilename = (filename)=>{
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     return uniqueSuffix+'-'+filename;
 }
+
+exports.sum = (a,b)=>{
+    return a+b;
+}

@@ -8,7 +8,12 @@ exports.index = (req,res)=>{
 
 exports.compress = async(req,res)=>{
     const filename = await uploadService.uploadFile(req,res);
-    const result =  await zipperService.compress(filename);//return url file if success
+    console.log('file name ',filename);
+    let result = false;
+    if (filename) {
+        result =  await zipperService.compress(filename);//return url file if success
+    }
+    
     if (result) {
         req.session['zip_url'] = result;
         req.flash('success','Berhasil');
